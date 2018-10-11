@@ -11,8 +11,8 @@
 ############################
 
 function plus (){
-    result=($1 + $2)
-    echo -e "$1 + $2 = $result"
+    result=$(($1 + $2))
+    echo -e "$1 + $2 = $result\n"
 }
 
 
@@ -24,12 +24,12 @@ function plus (){
 ############################
 
 function substract (){
-    result=($1 - $2)
-    echo -e "$1 - $2 = $result"
+    result=$(($1 - $2))
+    echo -e "$1 - $2 = $result\n"
 }
 
 
-## DivDIVIDEide
+## DIVIDE
 ############################
 # Function: divide()
 # Arguments: $a (int) , $b (int)
@@ -37,8 +37,8 @@ function substract (){
 ############################
 
 function divide (){
-    result=($1 / $2)
-    echo -e "$1 - $2 = $result"
+    result=$(($1 / $2))
+    echo -e "$1 / $2 = $result\n"
 }
 
 ## MULTIPLY
@@ -49,27 +49,67 @@ function divide (){
 ############################
 
 function multiply (){
-    result=($1 * $2)
-    echo -e "$1 - $2 = $result"
+    result=$(($1 * $2))
+    echo -e "$1 * $2 = $result\n"
 }
 
 
+## MENU
+############################
+# Function: menu()
+# Arguments: None
+# Description: Call the mathematical function that you want to perform.
+############################
 
-echo "############### CALCULATOR - MENU ###############"
-echo "1 - Plus"
-echo "2 - Substract"
-echo "3 - Divide"
-echo "4 - Multiply"
-echo "0 - Exit"
-echo "##################################################"
-echo "Choose your operation:"
+function menu {
+    echo "############### CALCULATOR - MENU ###############"
+    echo "1 - Plus"
+    echo "2 - Substract"
+    echo "3 - Divide"
+    echo "4 - Multiply"
+    echo "0 - Exit"
+    echo "##################################################"
+}
 
-read operation
+choice=1
+until [ $choice -eq 0 ]
+do
+    menu
+    
+    echo " "
+    echo "Choose your operation:"
 
-echo " "
-echo "Introduce a value:"
-read a
+    read choice
 
-echo " "
-echo "Introduce another value:"
-read b
+    if [ $choice -ne 0 ]
+    then
+        echo " "
+        echo "Introduce a value:"
+        read a
+
+        echo " "
+        echo "Introduce another value:"
+        read b
+        echo " "
+
+        case $choice in
+            1)
+                plus $a $b
+            ;;
+            2)
+                substract $a $b
+            ;;
+            3)
+                divide $a $b
+            ;;
+            4)
+                multiply $a $b
+            ;;
+            *)
+                echo "Invalid character"
+            ;;
+        esac
+    fi
+done
+
+echo "See you next time!"
