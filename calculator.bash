@@ -58,7 +58,7 @@ function multiply (){
 ############################
 # Function: menu()
 # Arguments: None
-# Description: Call the mathematical function that you want to perform.
+# Description: Call the menu structure, with possible functions.
 ############################
 
 function menu {
@@ -83,6 +83,7 @@ do
 
     if [ $choice -ne 0 ]
     then
+        ## OPERATIONS VALUES
         echo " "
         echo "Introduce a value:"
         read a
@@ -92,6 +93,7 @@ do
         read b
         echo " "
 
+        ## FUNCTION CONTROLLER
         case $choice in
             1)
                 plus $a $b
@@ -106,7 +108,7 @@ do
                 multiply $a $b
             ;;
             *)
-                echo "Invalid character"
+                echo "Invalid Operation, select the correct function"
             ;;
         esac
     fi
