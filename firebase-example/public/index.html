@@ -7,20 +7,33 @@
   <title>Document</title>
 </head>
 <body>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
   <script>
     // Initialize Firebase
     var config = {
-      
+      // FIRE BASE CONFIG
     };
     firebase.initializeApp(config);
+
     
     var ref = firebase.database().ref();
-    ref.child("videoclubs").on("value", function(snapshot){
+    ref.child(1).on("value", function(snapshot){
       console.log(snapshot.val());
     });
   </script>
   <h1>Victor Santaella</h1>
-  <h2>Firebase Test Project</h2>
+  <h2>Firebase Show Database Project</h2>
+  <table id="tabla" border="1">
+    <script>
+      for(let i = 0; i <= 6; i++){
+        var ref = firebase.database().ref();
+        ref.child(i).on("value", function(snapshot){
+          // JQUERY INSER ROW DATA
+          $("#tabla").append("<tr><td>ID Trabajador</td><td>"+snapshot.val().id_t+"</td><td>Nombre</td><td>"+snapshot.val().nombre+"</td><td>Oficio</td><td>"+snapshot.val().oficio+"</td><td>Tarifa</td><td>"+snapshot.val().tarifa+"</td></tr>");
+        });
+      }
+    </script>
+  </table>
 </body>
 </html>
